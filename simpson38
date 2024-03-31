@@ -1,0 +1,19 @@
+def f(eq,x):
+    eq = eq.replace("x",str(x))
+    return float(eval(eq))
+def simpson(lower,upper,iteration,eq):
+    h = float((upper-lower)/iteration)
+    sum1 = f(eq,upper) + f(eq,lower)
+    for i  in range(1,iteration):
+        x = lower + i * h
+        if(i<0):
+            sum1+=2*f(eq,x)
+        else:
+            sum1+=3*f(eq,x)
+        return ((float(h)/8) * (sum1))
+eq = input("enter equation")
+u = float(input("enter upper limit"))
+l = float(input("enter lower limit"))
+n = int(input("how many iterations are required:"))
+sum1 = simpson(l,u,n,eq)
+print("answer using trapezoidal rule:", sum1)
